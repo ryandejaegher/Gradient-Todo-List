@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    html {
+        font-family: 'helvetica neue';
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-content: start;
+        min-height: 100vh;
+    }
+
+    body {
+        background-color: #222;
+        margin: 0;
+        height: 100vh;
+    }
+
+    input {
+        width: 100vw;
+        height: 10vh;
+        font-size: 24px;
+        padding-left: 20px;
+        background-color: #222;
+    }
+
+    ul {
+        list-style-type: none;
+        background: linear-gradient(to bottom, #fc5c7d, #6a82fb);
+        margin: 0;
+        padding: 0;
+        align-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+
+    li {
+        border-bottom: 2px solid black;
+        padding-left: 20px;
+        font-size: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        font-weight: 800;
+        flex: 1;
+        color: white;
+        height: 10vh;
+    }
+
+    li > button {
+        margin-right: 20px;
+    }
+
+    body > button {
+        font-size: 20px;
+        font-weight: 600;
+        background:  #6a82fb;
+        color: white;
+        border: none;
+        width: 100vw;
+        height: 10vh;
+        align-items: end;
+    }
+
+    body > input {
+        border: none;
+        color:white;
+    }
+    
+    </style>
+</head>
+
+<body class="grid">
+    <!-- <h1>5 Item Todo</h1> -->
+    <input type="text" placeholder="Enter todo">
+    <button id="addTodo">Add Todo</button>
+    <ul class="todoList">
+        <li>Item 1<button>Done</button></li>
+        <li>Item 2<button>Done</button></li>
+        <li>Item 3<button>Done</button></li>
+    </ul>
+    <script>
+        // const todos = ['item1', 'item2', 'item3'];
+        // function newTodo(newTodo) { // This is a function that will only let you add a new todo if you have less than 5 todos. Otherwise it prompts you to complete your existing todos
+        //     if (todos.length < 5) {
+        //         todos.push(newTodo);
+        //     } else {
+        //         console.log(`Sorry, you need to complete your other todos first`)
+        //     }
+        // }
+
+        // todos.forEach(todoItem);
+
+        function todoItem() {
+            var todoList = document.querySelector('.todoList');
+            var todoText = document.querySelector('input');
+            var test = document.createElement('li');
+            var todoItem = `${todoText.value}<button>Done</button>`;
+            var fragment = document.createDocumentFragment();
+            test.innerHTML = todoItem
+            fragment.appendChild(test);
+            todoList.appendChild(fragment);
+            // var todoItem = document.createElement('li');
+            // var todoButton = document.createElement('button');
+            // var todoButtonText = document.createTextNode('Done');
+            // todoItem.append(todoText.value);
+            // todoButton.append(todoButtonText);
+            // todoItem.append(todoButton);
+            // todoList.append(todoItem);
+            // todoText.value ='';
+        }
+
+        var handlers = {
+            addTodo: document.addEventListener('click', function(e){
+                if(e.target.tagName === "BUTTON" && e.target.textContent === "Add Todo") {
+                    todoItem();
+                }
+            })
+            }
+
+            
+        //User should be able to add a todo
+        //User should only be able to have 5 todos at a time
+        //If they have more than 5 todos, they're warned that they already have 5 todos
+        //User should be able to clear/complete any todo 
+        //Adding new todo will create a new list item
+        //Each new todo will have a done or a delete button
+    </script>
+</body>
+
+</html>
